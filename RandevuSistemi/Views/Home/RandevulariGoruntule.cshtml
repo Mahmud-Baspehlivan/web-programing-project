@@ -21,10 +21,10 @@
         {
             <tr>
                 <td>@item.DoctorAdi</td>
-                <td>@item.UserName</td> 
+                <td>@item.UserName</td>
                 <td>@item.RandevuSaati</td>
                 <td>
-                    <a class="btn btn-danger" asp-area="" asp-controller="Home" asp-action="RandevuIptal" asp-route-id="@item.Id">İptal Et</a>
+                    <a class="btn btn-danger" asp-area="" asp-controller="Admin" asp-action="RandevuSil" asp-route-id="@item.Id">Sil</a>
                 </td>
             </tr>
         }
