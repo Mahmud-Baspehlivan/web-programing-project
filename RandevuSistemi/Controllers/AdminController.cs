@@ -318,35 +318,7 @@ namespace HayvanBarinagi.Controllers
             return RedirectToAction("Doktor", "Admin");
         }
 
-        //Doktorlar için çalışma saati oluşturalım ki , hastalar randevuları görüntüleyebilsin.
-        //[HttpPost]
-        //public IActionResult CalismaSaatiOlustur(int Id, DateTime CalismaSaati)
-        //{
-        //    if (AdminControl())
-        //    {
-        //        var doctor = context.Doktorlar.Find(Id); // View'dan gelen seçilen doktor id'sine göre doktoru bulma
-
-        //        if (doctor != null) // doktor nesnesi varsa yani null değilse
-        //        {
-        //            var yeniCalismaSaati = new CalismaSaatleri // yeni çalışma saati oluştur
-        //            {
-        //                DoctorId = doctor.Id,
-        //                CalismaZamani = CalismaSaati,   // Doktorun Adı ve hangi saatilerin müsait olduğu çalışma saatleri tablosuna eklemek için nesne üret.
-        //                DoctorAdi = doctor.AdSoyad
-
-        //            };
-
-        //            context.CalismaSaatleri.Add(yeniCalismaSaati);  // üretilen nesneyi veritabanına ekle
-        //            context.SaveChanges(); // veritabanı değişikliklerini kaydet
-
-        //            return RedirectToAction("Doktor", "Admin");
-        //        }
-        //    }
-
-        //    // Başarısız durumda başka bir sayfaya yönlendirme yapabilirsiniz.
-        //    return RedirectToAction("Index", "Home");
-        //}
-
+        
         [HttpPost]
         public IActionResult CalismaSaatiOlustur(int Id, string CalismaZamani)
         {
@@ -422,15 +394,15 @@ namespace HayvanBarinagi.Controllers
         {        
           var silinecekRandevu = context.Randevular.Find(Id);
 
-          if (silinecekRandevu != null)
-                {
-                    context.Remove(silinecekRandevu);
-                    context.SaveChanges();
-                    return RedirectToAction("Randevu", "Admin");
-                }
-                else {
-                    return RedirectToAction("Randevu", "Admin");
-                }
+            if (silinecekRandevu != null)
+            {
+                context.Remove(silinecekRandevu);
+                context.SaveChanges();
+                return RedirectToAction("Randevu", "Admin");
+            }
+            else {
+                return RedirectToAction("Randevu", "Admin");
+            }
             
         }
 

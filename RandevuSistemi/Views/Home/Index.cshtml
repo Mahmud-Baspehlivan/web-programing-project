@@ -11,6 +11,9 @@
     <h1 class="display-4">  <strong> @entr["title"]</strong></h1>
     <p class="lead">@entr["p"]</p>
 </header>
+<h2>Randevu Kontrolü</h2>
+
+<p id="randevuDurumu">Bilgi yükleniyor...</p>
 
 <div class="container py-5">
     <section id="hakkimizda" style=" background-color: rgba(255, 255, 255, 0.8); box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); padding: 20px;">
@@ -48,6 +51,22 @@
             </div>
         </div>
     </section>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // API'yi çağır
+            $.get('/api/Randevu/BoşRandevuVarMı', { doctorId: 1, randevuTarihi: new Date().toISOString().split('T')[0] }, function (data) {
+                // Gelen veriye göre mesajı güncelle
+                $('#randevuDurumu').text(data);
+            })
+               
+                .always(function () {
+                    // İsteğin tamamlanması durumunda "Bilgi yükleniyor..." metnini kaldır
+                    $('#randevuDurumu').removeClass('loading');
+                });
+        });
+    </script>
+
 </div>
 
 <style>
@@ -59,3 +78,4 @@
         background-attachment: fixed; /* Sayfa kaydırıldığında arka planın sabit kalmasını sağla */
     }
 </style>
+
